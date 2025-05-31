@@ -1,25 +1,30 @@
-#include "library.hpp"
 #include <iostream>
+#include <limits>
+#include <library.hpp>
 
 
 int main() {
     Library myLibrary;
+    
+    while (true) {
+        std::cout << "1. Borrow Book\n";
+        std::cout << "2. Add/Return Book\n";
+        std::cout << "3. List all Books\n";
+        std::cout << "4. Quit\n";
+        
+        std::cout << "\n Please enter your choice: ";
+        int choice;
+        std::cin >> choice;
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please try again!\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
 
-    myLibrary.addBook("Crime and Punishment");
-    myLibrary.addBook("Metamorphosis");
-    myLibrary.addBook("Blood Meridian");
-
-    std::cout << "Listing books after adding:\n";
-    myLibrary.listBooks();
-
-    std::cout << "\nAttempting to borrow 'Metamorphosis':\n";
-    if (myLibrary.borrowBook("Metamorphosis"))
-        std::cout << "Successfully borrowed Metamorphosis.\n";
-    else
-        std::cout << "Metamorphosis was unavailable.\n";
-
-    std::cout << "Listing books after borrowing:\n";
-    myLibrary.listBooks();
-
-    return 0;
+        if (choice < 1 || choice > 4) {
+            std::cout << "Please enter a value between 1 and 4.";
+            continue;
+        }
+    }
 }
