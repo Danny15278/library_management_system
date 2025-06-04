@@ -1,0 +1,18 @@
+
+Library Management System Notes
+
+Main functionalities
+1. Borrow books
+2. Add/Return books (Maybe separated?)
+3. List all books
+4. Quit
+
+- Looking to add persistent memory, maybe storing book data on either plaintext or JSON file?
+
+- Current infinite loop of options, maybe clean up to display only once?
+
+- Create a TUI?
+
+- Better memory management?
+
+- Build management, with CMake?
