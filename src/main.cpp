@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include <library.hpp>
+#include "library.hpp"
 
 
 int main() {
@@ -35,6 +35,23 @@ int main() {
             std::cout << "Please enter the title: ";
             std::getline(std::cin, title);
             myLibrary.borrowBook(title);
+        }
+
+        else if (choice == 2) { 
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::string title;
+            std::cout << "Please enter the title: ";
+            std::getline(std::cin, title);
+            myLibrary.addBook(title);
+        }
+
+        else if (choice == 3) {
+            myLibrary.listBooks();
+        }
+
+        else {
+            std::cout << "Exiting the programme.";
+            break;
         }
     }
 }
