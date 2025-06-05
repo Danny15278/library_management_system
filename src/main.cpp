@@ -8,9 +8,10 @@ int main() {
     
     while (true) {
         std::cout << "1. Borrow Book\n";
-        std::cout << "2. Add/Return Book\n";
-        std::cout << "3. List all Books\n";
-        std::cout << "4. Quit\n";
+        std::cout << "2. Add Book\n";
+        std::cout << "3. Check for Book\n";
+        std::cout << "4. List all Books\n";
+        std::cout << "5. Quit\n";
         
         std::cout << "\n Please enter your choice: "; 
         int choice;
@@ -23,7 +24,7 @@ int main() {
             continue;
         }
 
-        if (choice < 1 || choice > 4) { // Catch values outside of range
+        if (choice < 1 || choice > 5) { // Catch values outside of range
             std::cout << "Please enter a value between 1 and 4.";
             continue;
         }
@@ -39,18 +40,42 @@ int main() {
 
         else if (choice == 2) { // Input 2: Add/Returning a book to the LMS 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
             std::string title;
             std::cout << "Please enter the title: ";
             std::getline(std::cin, title);
-            myLibrary.addBook(title);
+
+            std::string author;
+            std::cout << "Please enter the author's name: ";
+            std::getline(std::cin, author);
+            
+            int publicationYear;
+            std::cout << "Please enter the publication year: ";
+            std::cin >> publicationYear;
+
+            Book book{ title, author, publicationYear };
+            myLibrary.addBook(book);
+            
+        }
+        
+        else if (choice == 3) { // Input 3: Check if LMS has book
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::string title;
+            std::cout << "Please enter the title: ";
+            std::getline(std::cin, title);
+            if (myLibrary.hasBook(title)) {
+                std::cout << title << " is in the library!\n";
+            } else {
+                std::cout << title << " is unfortunately not in the library.\n";
+            }
         }
 
-        else if (choice == 3) { // Input 3: List all books in LMS
+        else if (choice == 4) { // Input 4: List all books in LMS
             myLibrary.listBooks();
         }
 
-        else { // Input 4: Exit programme.
-            std::cout << "Exiting the programme.";
+        else { // Input 5: Exit programme.
+            std::cout << "Exiting the programme.\n";
             break;
         }
     }
