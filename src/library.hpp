@@ -16,6 +16,7 @@ public:
     Library();
 
     void addBook(const Book& title);
-    bool borrowBook(const Book& title);
+    bool borrowBook(const std::string& title);
     void listBooks();
+    bool hasBook(const std::string& title);
 };

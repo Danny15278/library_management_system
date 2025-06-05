@@ -1,26 +1,29 @@
 #include "library.hpp"
+#include "helpers.hpp"
 #include <algorithm>
 #include <iostream>
-
 
 Library::Library() = default; // default constructor
 
 
 
-void Library::addBook(const std::string& title) {
-    bookList.push_back(title);
+void Library::addBook(const Book& book) {
+    bookList.push_back(book);
 }
 
 bool Library::borrowBook(const std::string& title) {
-    auto book = std::find(bookList.begin(), bookList.end(), title);
-    if (book != bookList.end())
-    {
-        bookList.erase(book);
-        std::cout << "Successfully borrowed " << title << ".\n";
+    auto it = std::find_if(bookList.begin(), bookList.end(), [&] (const Book& book) {
+        return toLower(book.title) == toLower(title);
+    });
+
+    if (it != bookList.end()) {
+        std::cout << "Successfully borrowed \"" << it->title << "\", by " << it->author << " (" << it->publicationYear << ").\n";
+        bookList.erase(it);
         return true;
+    } else {
+        std::cout << "\"" << title << "\" was not found in the library.\n";
+        return false;
     }
-    std::cout << title << " was not found.\n";
-    return false;
 }
 
 void Library::listBooks() {
@@ -31,7 +34,16 @@ void Library::listBooks() {
     else
     {
         std::cout << "Books currently in the library:\n";
-        for (const auto& title : bookList)
-            std::cout << "- " << title << "\n";
+        for (const auto& book : bookList) {
+            std::cout << "- " << book.title << " by " << book.author << " (" << book.publicationYear << ")\n";
+        }
     }
+}
+
+bool Library::hasBook(const std::string& title) {
+    auto it = std::find_if(bookList.begin(), bookList.end(), [&] (const Book& book) {
+        return toLower(book.title) == toLower(title);
+    });
+
+    return it != bookList.end(); 
 }
