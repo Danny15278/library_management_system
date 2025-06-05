@@ -37,7 +37,7 @@ int main() {
             myLibrary.borrowBook(title);
         }
 
-        else if (choice == 2) { 
+        else if (choice == 2) { // Input 2: Add/Returning a book to the LMS 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::string title;
             std::cout << "Please enter the title: ";
@@ -45,11 +45,11 @@ int main() {
             myLibrary.addBook(title);
         }
 
-        else if (choice == 3) {
+        else if (choice == 3) { // Input 3: List all books in LMS
             myLibrary.listBooks();
         }
 
-        else {
+        else { // Input 4: Exit programme.
             std::cout << "Exiting the programme.";
             break;
         }

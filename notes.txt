@@ -7,7 +7,7 @@ Main functionalities
 3. List all books
 4. Quit
 
-- Looking to add persistent memory, maybe storing book data on either plaintext or JSON file?
+- Looking to add persistent memory, maybe storing/saving book data on either plaintext or JSON file?
 
 - Current infinite loop of options, maybe clean up to display only once?
 
