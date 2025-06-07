@@ -5,15 +5,18 @@
 
 int main() {
     Library myLibrary;
+
+    std::cout << "=============================\n";
+    std::cout << "   Welcome to the Library!   \n\n";
+    std::cout << "1. Borrow Book\n";
+    std::cout << "2. Add Book\n";
+    std::cout << "3. Check for Book\n";
+    std::cout << "4. List all Books\n";
+    std::cout << "5. Quit\n\n";
+    std::cout << "=============================\n";
     
     while (true) {
-        std::cout << "1. Borrow Book\n";
-        std::cout << "2. Add Book\n";
-        std::cout << "3. Check for Book\n";
-        std::cout << "4. List all Books\n";
-        std::cout << "5. Quit\n";
-        
-        std::cout << "\n Please enter your choice: "; 
+        std::cout << "Please enter your choice: "; 
         int choice;
         std::cin >> choice;
 
@@ -25,7 +28,7 @@ int main() {
         }
 
         if (choice < 1 || choice > 5) { // Catch values outside of range
-            std::cout << "Please enter a value between 1 and 4.";
+            std::cout << "Please enter a value between 1 and 5.";
             continue;
         }
 
@@ -36,6 +39,10 @@ int main() {
             std::cout << "Please enter the title: ";
             std::getline(std::cin, title);
             myLibrary.borrowBook(title);
+
+            std::cout << "Press ENTER to continue.";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.get();
         }
 
         else if (choice == 2) { // Input 2: Add/Returning a book to the LMS 
@@ -56,6 +63,10 @@ int main() {
             Book book{ title, author, publicationYear };
             myLibrary.addBook(book);
             
+            std::cout << "Press ENTER to continue.";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.get();
+
         }
         
         else if (choice == 3) { // Input 3: Check if LMS has book
@@ -68,14 +79,23 @@ int main() {
             } else {
                 std::cout << title << " is unfortunately not in the library.\n";
             }
+
+            std::cout << "Press ENTER to continue.";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.get();
         }
 
         else if (choice == 4) { // Input 4: List all books in LMS
             myLibrary.listBooks();
+
+            std::cout << "Press ENTER to continue.";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.get();
+
         }
 
         else { // Input 5: Exit programme.
-            std::cout << "Exiting the programme.\n";
+            std::cout << "Exiting the programme.\n" << std::flush;
             break;
         }
     }
