@@ -1,2 +1,2 @@
 # library_management_system
-Basic LMS in C++.
+Essentially a basic LMS, developed to be a basic terminal application. Simply just to get more practice with OOP in C++.
