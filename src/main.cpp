@@ -2,19 +2,23 @@
 #include <limits>
 #include "library.hpp"
 
-
-int main() {
-    Library myLibrary;
-
+void printMenu() {
     std::cout << "=============================\n";
     std::cout << "   Welcome to the Library!   \n\n";
     std::cout << "1. Borrow Book\n";
     std::cout << "2. Add Book\n";
     std::cout << "3. Check for Book\n";
     std::cout << "4. List all Books\n";
-    std::cout << "5. Quit\n\n";
+    std::cout << "5. Quit\n";
     std::cout << "=============================\n";
     
+}
+
+int main() {
+    Library myLibrary;
+
+    printMenu();
+
     while (true) {
         std::cout << "Please enter your choice: "; 
         int choice;
@@ -43,6 +47,9 @@ int main() {
             std::cout << "Press ENTER to continue.";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.get();
+
+            std::cout << "\033[2J\033[H";
+            printMenu(); 
         }
 
         else if (choice == 2) { // Input 2: Add/Returning a book to the LMS 
@@ -66,7 +73,8 @@ int main() {
             std::cout << "Press ENTER to continue.";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.get();
-
+            std::cout << "\033[2J\033[H"; 
+            printMenu();
         }
         
         else if (choice == 3) { // Input 3: Check if LMS has book
@@ -83,6 +91,8 @@ int main() {
             std::cout << "Press ENTER to continue.";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.get();
+            std::cout << "\033[2J\033[H";
+            printMenu(); 
         }
 
         else if (choice == 4) { // Input 4: List all books in LMS
@@ -91,7 +101,9 @@ int main() {
             std::cout << "Press ENTER to continue.";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cin.get();
-
+            std::cout << "\033[2J\033[H"; 
+            printMenu(); 
+            
         }
 
         else { // Input 5: Exit programme.
